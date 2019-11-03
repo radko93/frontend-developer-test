@@ -9,7 +9,7 @@ describe('Auth', () => {
   test('should create login actions', () => {
     const requestAction = login.request({ email: data.email })
     expect(requestAction).toEqual({
-      type: 'LOGIN',
+      type: 'LOGIN_REQUEST',
       payload: {
         email: data.email,
       },

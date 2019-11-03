@@ -3,7 +3,7 @@ import { login, logout } from '../../../store/auth/actions'
 
 const data = {
   email: 'test@wp.pl',
-  token: 'sss'
+  token: 'sss',
 }
 
 describe('Auth reducer', () => {

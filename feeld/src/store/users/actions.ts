@@ -1,4 +1,4 @@
-import { createAsyncAction, createAction } from 'typesafe-actions'
+import { createAsyncAction } from 'typesafe-actions'
 import { GetUsersRequest, GetUsersSuccess, GetUsersFailure } from './models'
 
 export const getUsers = createAsyncAction('GET_USERS_REQUEST', 'GET_USERS_SUCCESS', 'GET_USERS_FAILURE')<
@@ -6,5 +6,3 @@ export const getUsers = createAsyncAction('GET_USERS_REQUEST', 'GET_USERS_SUCCES
   GetUsersSuccess,
   GetUsersFailure
 >()
-
-export const logout = createAction('LOGOUT')

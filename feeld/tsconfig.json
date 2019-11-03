@@ -5,6 +5,7 @@
     "esModuleInterop": true,
     "isolatedModules": true,
     "noUnusedLocals": true,
+    "skipLibCheck": true,
     "jsx": "react-native",
     "lib": [
       "esnext"

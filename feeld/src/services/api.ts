@@ -7,7 +7,7 @@ export type Headers = {
 
 export type RequestOptions = {
   url: string
-  method: Method,
+  method: Method
   headers?: Headers
   data?: string
   timeout?: number
@@ -24,7 +24,9 @@ export type Context = {
 
 export type SuccessResult<T> = { data: T }
 
-export type ErrorResult = Error
+export type ErrorResult = {
+  error: Error
+}
 
 export type Result<T> = SuccessResult<T> | ErrorResult
 
@@ -66,15 +68,15 @@ export default class API {
   }
 
   callApi = <T>(options: RequestOptions): Promise<Result<T>> => {
-    return axios.request<T>(options)
+    return axios
+      .request<T>(options)
       .then(response => {
         return {
-          data: response.data
+          data: response.data,
         }
       })
-      .catch(error => {
-        return new Error(error)
-      })
+      .catch(error => ({
+        error: new Error(error),
+      }))
   }
-
 }

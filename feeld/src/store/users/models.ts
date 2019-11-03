@@ -1,8 +1,6 @@
 export type GetUsersRequest = undefined
 
-export type GetUsersSuccess = {
-  users: User[]
-}
+export type GetUsersSuccess = User[]
 
 export type GetUsersFailure = Error
 
