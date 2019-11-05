@@ -13,5 +13,5 @@ export const Container = styled.TouchableOpacity<{ color: string }>`
 
 export const Label = styled.Text<{ color: string }>`
   color: ${({ color }) => color};
-  size: ${responsivePercentageFontSize(2)};
+  font-size: ${responsivePercentageFontSize(2)};
 `

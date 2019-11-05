@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container } from './Button.styled'
+import { Container, Label } from './Button.styled'
 
 type Props = {
   onPress: () => void
@@ -10,7 +10,7 @@ type Props = {
 const Button = ({ onPress, color, label }: Props): React.ReactElement => {
   return (
     <Container color={color} onPress={onPress} testID="button">
-      {label}
+      <Label color={color}>{label}</Label>
     </Container>
   )
 }

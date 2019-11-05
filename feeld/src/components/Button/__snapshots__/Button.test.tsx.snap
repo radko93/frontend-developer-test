@@ -24,6 +24,18 @@ exports[`Button Component Renders Button with default props 1`] = `
   }
   testID="button"
 >
-  Test
+  <Text
+    color="#00F"
+    style={
+      Array [
+        Object {
+          "color": "#00F",
+          "fontSize": 31,
+        },
+      ]
+    }
+  >
+    Test
+  </Text>
 </View>
 `;
