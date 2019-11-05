@@ -3,11 +3,10 @@ import { fork } from 'redux-saga/effects'
 import authFlow from './auth/sagas'
 import usersFlow from './users/sagas'
 import API from '../services/api'
+import config from '../config'
 
 export default function* sagaWrapper(): SagaIterator {
-  const api = new API({
-    baseUrl: 'https://fld-devtest-api.herokuapp.com',
-  })
+  const api = new API(config)
 
   yield fork(authFlow)
 
