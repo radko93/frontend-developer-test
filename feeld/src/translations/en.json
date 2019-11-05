@@ -1,0 +1,9 @@
+{
+  "loginScreen": {
+    "title": "Login",
+    "loginButton": "Sign in"
+  },
+  "homeScreen": {
+    "title": "Home"
+  }
+}
