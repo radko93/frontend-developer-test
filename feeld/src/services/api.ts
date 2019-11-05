@@ -49,7 +49,7 @@ export default class API {
 
   // Api methods
   public getUsers = (context: Context) => (): Promise<Result<GetUsersSuccess>> => {
-    return this.callBaseService(`/api/v1/users`, 'GET', context)
+    return this.callBaseService(`api/v1/users`, 'GET', context)
   }
 
   private callBaseService = <T>(
@@ -69,10 +69,10 @@ export default class API {
 
   callApi = <T>(options: RequestOptions): Promise<Result<T>> => {
     return axios
-      .request<T>(options)
+      .request<{ data: T }>(options)
       .then(response => {
         return {
-          data: response.data,
+          data: response.data.data,
         }
       })
       .catch(error => ({
