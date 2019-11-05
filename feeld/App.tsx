@@ -1,12 +1,12 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import store from './src/store'
-import HomeScreen from './src/screens/HomeScreen'
+import RootNavigator from './src/navigation'
 
 const Root = (): React.ReactElement => {
   return (
     <Provider store={store}>
-      <HomeScreen />
+      <RootNavigator />
     </Provider>
   )
 }
