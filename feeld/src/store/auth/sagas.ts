@@ -1,10 +1,10 @@
-import { takeLatest, delay, call, put } from 'redux-saga/effects'
+import { takeLatest, put } from 'redux-saga/effects'
 import { login } from './actions'
 import { getType } from 'typesafe-actions'
 
 export default function* authFlow() {
   yield takeLatest(getType(login.request), function*() {
-    yield call(delay, 2000) // real API call instead of this
+    // real API call here
     yield put(
       login.success({
         token:
