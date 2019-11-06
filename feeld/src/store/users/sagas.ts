@@ -1,5 +1,5 @@
 import { takeLatest, call, select, put } from 'redux-saga/effects'
-import { getUsers } from './actions'
+import { getUsers, likeUser } from './actions'
 import { getType } from 'typesafe-actions'
 import API, { Context } from '../../services/api'
 import { selectContext } from '../auth/selectors'
@@ -18,5 +18,8 @@ export default function* usersFlow(api: API): SagaIterator {
     } catch (err) {
       yield put(getUsers.failure(err))
     }
+  })
+  yield takeLatest(getType(likeUser.request), function*(action: ReturnType<typeof likeUser.request>) {
+    yield put(likeUser.success(action.payload))
   })
 }

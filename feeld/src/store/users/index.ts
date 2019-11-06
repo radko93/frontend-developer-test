@@ -1,5 +1,5 @@
 import { createReducer, ActionType } from 'typesafe-actions'
-import { getUsers } from './actions'
+import { getUsers, likeUser } from './actions'
 import { logout } from '../auth/actions'
 import { User } from './models'
 
@@ -18,6 +18,7 @@ export const initialState: State = {
 const userActions = {
   logout,
   getUsers,
+  likeUser,
 }
 
 type UserAction = ActionType<typeof userActions>
@@ -35,5 +36,9 @@ export default createReducer<State, UserAction>(initialState)
     ...state,
     error: action.payload,
     isFetching: false,
+  }))
+  .handleAction(likeUser.success, (state, action) => ({
+    ...state,
+    users: state.users.filter(user => user.id === action.payload),
   }))
   .handleAction(logout, () => initialState)
