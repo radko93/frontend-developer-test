@@ -4,7 +4,9 @@
     "loginButton": "Sign in"
   },
   "homeScreen": {
-    "title": "Home"
+    "title": "Home",
+    "likeAction": "YES",
+    "dislikeAction": "NO"
   },
   "offlineScreen": {
     "errorMessage": "An error occured, please try again."

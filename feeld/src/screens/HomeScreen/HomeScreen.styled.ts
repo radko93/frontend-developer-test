@@ -1,13 +1,14 @@
 import styled from 'styled-components/native'
+import { responsiveDPSize } from '../../utils/responsive'
 
-export const EmptyContainer = styled.View`
+export const EmptyContainer = styled.SafeAreaView`
   flex: 1;
   justify-content: center;
   align-items: center;
 `
 
-export const Container = styled.View`
+export const Container = styled.SafeAreaView`
   flex: 1;
-  justify-content: center;
-  align-items: center;
+  padding-horizontal: ${responsiveDPSize(10)};
+  padding-vertical: ${responsiveDPSize(5)};
 `

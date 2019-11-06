@@ -10,9 +10,21 @@ export const navigators = {
   NotAuthenticatedNavigator: { routeName: 'NotAuthenticatedNavigator' },
 }
 
-const AuthenticatedNavigator = createStackNavigator({ [SCREENS.HomeScreen.routeName]: SCREENS.HomeScreen.component })
+const AuthenticatedNavigator = createStackNavigator({
+  [SCREENS.HomeScreen.routeName]: {
+    screen: SCREENS.HomeScreen.component,
+    navigationOptions: {
+      headerTitle: SCREENS.HomeScreen.title,
+    },
+  },
+})
 const NotAuthenticatedNavigator = createStackNavigator({
-  [SCREENS.LoginScreen.routeName]: SCREENS.LoginScreen.component,
+  [SCREENS.LoginScreen.routeName]: {
+    screen: SCREENS.LoginScreen.component,
+    navigationOptions: {
+      headerTitle: SCREENS.LoginScreen.title,
+    },
+  },
 })
 
 export default createAppContainer(

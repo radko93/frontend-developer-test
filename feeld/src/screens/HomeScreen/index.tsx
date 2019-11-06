@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
 import { ActivityIndicator } from 'react-native'
 import { connect } from 'react-redux'
-import { ErrorScreen } from '../../components'
+import { ErrorScreen, UsersList } from '../../components'
 import { selectUsers, selectUsersError, selectIsFetchingUsers } from '../../store/users/selectors'
 import { State } from '../../store'
-import { getUsers } from '../../store/users/actions'
+import { getUsers, likeUser } from '../../store/users/actions'
 import { EmptyContainer, Container } from './HomeScreen.styled'
 import colors from '../../constants/colors'
 
-const AccountScreen = ({ users, error, isFetching, fetchUsers }: ConnectProps): React.ReactElement => {
+const AccountScreen = ({ users, error, isFetching, fetchUsers, markUserAsDone }: ConnectProps): React.ReactElement => {
   useEffect(() => {
     if (users.length === 0) {
       fetchUsers()
@@ -26,7 +26,11 @@ const AccountScreen = ({ users, error, isFetching, fetchUsers }: ConnectProps): 
     )
   }
 
-  return <Container />
+  return (
+    <Container>
+      <UsersList items={users} onUserLike={markUserAsDone} />
+    </Container>
+  )
 }
 
 const select = (store: State) => ({
@@ -37,6 +41,7 @@ const select = (store: State) => ({
 
 const actions = {
   fetchUsers: getUsers.request,
+  markUserAsDone: likeUser.request,
 }
 type ConnectProps = ReturnType<typeof select> & typeof actions
 

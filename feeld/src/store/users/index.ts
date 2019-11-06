@@ -30,7 +30,7 @@ export default createReducer<State, UserAction>(initialState)
   }))
   .handleAction(getUsers.success, (state, action) => ({
     ...initialState,
-    users: action.payload,
+    users: action.payload.filter((v, i, a) => a.findIndex(t => t.id === v.id) === i), // remove duplicates
   }))
   .handleAction(getUsers.failure, (state, action) => ({
     ...state,
@@ -39,6 +39,6 @@ export default createReducer<State, UserAction>(initialState)
   }))
   .handleAction(likeUser.success, (state, action) => ({
     ...state,
-    users: state.users.filter(user => user.id === action.payload),
+    users: state.users.filter(user => user.id !== action.payload),
   }))
   .handleAction(logout, () => initialState)
