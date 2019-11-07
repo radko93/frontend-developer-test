@@ -1,86 +1,39 @@
-# Frontend Developer Coding Challenge
+I finally completed my test! I didn't have much time so in the end, I did not finish everything I planned. Rules were flexible so I decided to focus more on project architecture than its design.
 
-Hi! welcome to Feeld. As part of the recruitment process we want to know how you think, code and structure your work. In order to do that, we're going to ask you to complete this coding challenge. 
+I did not enjoy doing this exercise, I was quite anxious while reading:
 
-## Some background
+> come up with a solution that will impress us
 
-Feeld is a dating app. People are free to browse profiles and decide whether they like them or not. 
+I feel like it's expected to build something extraordinary inside a regular coding exercise that should take a couple of hours (it took me longer than that :(). Maybe someone else did it, but I did not have time nor ideas to accomplish anything similar. I just concentrated on building something solid.
 
-## What we expect
+But I felt motived because of how exciting the role sounds. I broke the main rule which is to make a design-driven app. I’m a bit experienced in UX, but I don’t feel very confident designing user interfaces myself (as I never really had to do it), that’s why I focused on the part I’m stronger at - coding. Unfortunately, the app does not look great.
 
-* Build a performant, clean and well structured solution;
-* Commit early and often. We want to be able to check your progress;
-* Feel free to address the problem creatively according to your programming tastes (there are always multiple ways to achieve the same goal) and try to use elegant solutions.
-* Feeld.co is a design-driven app. Your solution should look *modern, relevant, simple and in line with our brand image*
-* Go the extra mile. The requirements below are just the bare minimum. Be creative and come up with a solution that will impress us. If you think our requirements are whack, or not appropriate, change them and explain why
-* You have **one week** to complete this challenge
+### Architecture:
+- store - divided into modules, each one of them includes actions, reducer, sagas, models and selectors
+- components - reusable components
+services - the only API in there right now, other services like file upload/download could be added there
+- constants
+- utils - include helpers to make UI responsive on different devices
+- translations
+- screens - components connected to the redux store
 
-## The Challenge
+Besides that, the project included navigation setup file and config file.
 
-Our backend team has created an API that will give you a bunch of user profiles, and you have been given some (very lose) requirements from the product team
+### Tech:
+- `typescript` - I had a talk about typescript in React Native just two months ago if you would like to to have a look https://www.youtube.com/watch?v=U3OE1uTIN3Q&t=2s
+- `typesafe-actions` - a great library that helps in using TS with Redux actions and reducers (it also supports regular redux reducers syntax, not only the one I used in the app)
+- `jest` - unit tests and snapshots using `react-native-testing-library`
+- `redux` - definitely overkill for a small app like this, but I wanted to showcase how I use redux
+- `redux-saga` - currently my favourite to handle asynchronous things. Easy to accomplish complex things in a clear and declarative way. Quite easy to test them.
+- `reselect` - IMO a must-have for any redux app - memoize your selectors’ response so your app runs faster
+- `typescript-eslint` - TSlist and Eslint in one, help with using and learning Typescript
+- `styled-components` - a great way to keep styles clean and reusable. Also, a must-have if someone has not another clean solution to handle this
+- `react-navigation` - standard option for navigation in react native. Exciting times coming as it’s going to get even better in the next version.
+- `react-native-snap-carousel` and `react-native-pan-zoom` to build the image preview (to open click on avatar, to close swipe down)
 
-* You must build an app that displays these users in an atractive way (think Tinder, Grindr, Happn, Hinge)
-* The API will return the following information about a user:
+I did not add as many tests as I wanted, unfortunately. I also missed the ability to skip a user. On the other hand, I tried to handle things like fetch failure. In the end, I’m quite happy with the final effect, as that is more or less how I would set up a new project right now.
 
-```
-{
-    "id": "55be3c8fc964860700ebf515",
-    "info": {
-        "age": 20,
-        "type": "single",
-        "gender": "male",
-        "sexuality": "straight",
-        "name": "D",
-        // a short text about them
-        "about": "\"Tell us more about you\"",
-        // a list of desires
-        "desires": [
-            "Food"
-        ],
-        // a list of tags they're interested in
-        "interests": [
-            "Food"
-        ]
-    },
-    "associated": null, // if they're a couple, this will be populated
-    "photos": [ // this will be a list of zero or more photos
-        {
-            "url": "...",
-            "width": 716,
-            "height": 716
-        }
-    ]
-}
-```
+Link to the app on expo: https://exp.host/@radko93/feeldradek (I tested mostly on iOS).
 
-* A user should be able to make a decision (Like or Dislike) on the user, but they don't *have* to, i.e. they can skip the profile.
-* The user should be able to browse another user's photos
-
-## Accessing the API
-
-API Root URL: https://fld-devtest-api.herokuapp.com
-
-The API is authenticated using the following session token that must be supplied in the HTTP request headers (using the `session-token` key):
-
-```
-3TtY+AVtEJMaOPWGyEulVEgVBWZ8gqM75gag6wCcA3rJCYWMkX/ZmAOJxrZ4bPyBLJBch7VyMYD8ZCWoNPCUnJbT5M2iRWjJteGrfNhFzd+0oDbWQwiNAIdG0W9rHw7sKAAWk5uEzjs+lPykJnmy56LRwSFpoyxHC7p9G3KTQoQ=
-```
-
-### Endpoints
-
-There's only one—`/api/v1/users`—which will return 20 unique users picked at random from a set of 100 users. You can call this endpoint using Curl as follows:
-
-```
-curl -H 'session-token: 3TtY+AVtEJMaOPWGyEulVEgVBWZ8gqM75gag6wCcA3rJCYWMkX/ZmAOJxrZ4bPyBLJBch7VyMYD8ZCWoNPCUnJbT5M2iRWjJteGrfNhFzd+0oDbWQwiNAIdG0W9rHw7sKAAWk5uEzjs+lPykJnmy56LRwSFpoyxHC7p9G3KTQoQ=' \
-https://fld-devtest-api.herokuapp.com/api/v1/users
-```
-
-## Your task:
-
-1. Fork this repo
-2. Produce an expo React Native app that calls the provided API and displays users. Make it public and send us a link so we can open it
-3. Create a readme file explaining your technical choices, architecture and if you have them, your ideas and suggestions.
-4. Send us a PR.
-
-GOOD LUCK!
-
+All the best,
+Radek
